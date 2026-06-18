@@ -201,9 +201,9 @@ footer a:hover{color:var(--text)}
 }
 
 /* ── AUTH WALL ── */
-.auth-wall{position:fixed;inset:0;background:rgba(8,15,40,.97);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px)}
+.auth-wall{position:fixed;inset:0;background:rgba(8,15,40,.97);z-index:10000;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(12px)}
 .auth-wall.hidden{display:none}
-.auth-box{background:var(--surface);border:1px solid rgba(0,200,255,.2);border-radius:16px;overflow:hidden;max-width:860px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.6);display:flex;min-height:560px}
+.auth-box{background:var(--surface);border:1px solid rgba(0,200,255,.2);border-radius:16px;overflow:hidden;max-width:860px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.6);display:flex;min-height:600px;margin:auto}
 /* left highlights panel */
 .auth-highlights{width:340px;flex-shrink:0;background:linear-gradient(160deg,#0a1840 0%,#0d1b3e 50%,#0f2050 100%);border-right:1px solid rgba(0,200,255,.12);padding:36px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .auth-highlights::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,255,.12),transparent 70%);pointer-events:none}
@@ -225,7 +225,7 @@ footer a:hover{color:var(--text)}
 .auth-hl-stat-l{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
 .auth-hl-divider{width:1px;background:rgba(0,200,255,.1)}
 /* right form panel */
-.auth-form-panel{flex:1;padding:40px 36px;display:flex;flex-direction:column;justify-content:center}
+.auth-form-panel{flex:1;padding:36px 36px;display:flex;flex-direction:column;justify-content:flex-start;overflow-y:auto}
 .auth-logo{display:none}
 @media(max-width:680px){
   .auth-box{flex-direction:column;max-width:440px}
@@ -242,9 +242,9 @@ footer a:hover{color:var(--text)}
 .auth-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--b2);border-radius:8px;overflow:hidden}
 .auth-tab{flex:1;padding:9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;cursor:pointer;background:transparent;border:none;color:var(--muted);transition:all .15s;text-align:center}
 .auth-tab.active{background:var(--accentd);color:var(--accent)}
-.auth-form{display:flex;flex-direction:column;gap:10px}
+.auth-form{display:flex;flex-direction:column;gap:8px}
 .auth-form.hidden{display:none}
-.auth-inp{background:var(--panel);border:1px solid var(--b2);border-radius:7px;padding:11px 13px;font-family:var(--mono);font-size:12px;color:var(--text);outline:none;width:100%;transition:border-color .15s}
+.auth-inp{background:var(--panel);border:1px solid var(--b2);border-radius:7px;padding:10px 12px;font-family:var(--mono);font-size:12px;color:var(--text);outline:none;width:100%;transition:border-color .15s}
 .auth-inp:focus{border-color:rgba(0,200,255,.4)}
 .auth-inp::placeholder{color:var(--muted)}
 .auth-btn{padding:12px;background:var(--accent);color:#04080E;border:none;border-radius:8px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;cursor:pointer;transition:all .18s;width:100%}
@@ -333,6 +333,53 @@ footer a:hover{color:var(--text)}
 .mfa-setup-msg{font-family:var(--mono);font-size:10.5px;text-align:center;min-height:16px;margin-bottom:8px}
 .mfa-setup-msg.err{color:#FF6B6B}
 .mfa-setup-msg.ok{color:#00E87A}
+
+
+.auth-consent{display:flex;align-items:flex-start;gap:9px;margin:10px 0 6px;padding:10px 12px;background:var(--panel);border-radius:8px;border:1px solid var(--b2);transition:border-color .2s}
+.auth-consent.flash{border-color:#FF6B6B;animation:consentFlash .4s ease}
+@keyframes consentFlash{0%,100%{background:var(--panel)}50%{background:rgba(255,107,107,.12)}}
+.auth-consent input[type=checkbox]{width:16px;height:16px;margin-top:1px;flex-shrink:0;accent-color:var(--accent);cursor:pointer}
+.auth-consent label{font-size:11.5px;color:var(--dim);line-height:1.5;cursor:pointer}
+.auth-consent a{color:var(--accent);text-decoration:underline}
+
+
+/* ── PRIVACY MODAL ── */
+.privacy-modal-ovl{position:fixed;inset:0;background:rgba(8,15,40,.97);z-index:11000;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(12px)}
+.privacy-modal-ovl.open{display:flex;animation:mfi .18s ease}
+.privacy-modal{background:var(--surface);border:1px solid rgba(0,200,255,.2);border-radius:16px;max-width:760px;width:100%;margin:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.privacy-modal-header{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--b);border-radius:16px 16px 0 0;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;z-index:1}
+.privacy-modal-title{font-family:var(--serif);font-size:18px;color:var(--text);letter-spacing:-.3px}
+.privacy-modal-close{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .15s}
+.privacy-modal-close:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.privacy-modal-body{padding:32px 36px 40px;overflow-y:auto;max-height:calc(100vh - 160px)}
+.pm-eyebrow{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.pm-updated{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--b)}
+.pm-toc{background:var(--panel);border:1px solid var(--b);border-radius:10px;padding:18px 22px;margin-bottom:32px}
+.pm-toc-title{font-family:var(--mono);font-size:8.5px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.pm-toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pm-toc a{color:var(--dim);text-decoration:none;font-size:12px;display:flex;gap:7px;transition:color .13s}
+.pm-toc a:hover{color:var(--accent)}
+.pm-toc .n{color:var(--accent);font-family:var(--mono);font-size:10px;flex-shrink:0;width:16px}
+.pm-h2{font-family:var(--serif);font-size:20px;letter-spacing:-.4px;margin:36px 0 12px;display:flex;align-items:center;gap:10px;scroll-margin-top:20px}
+.pm-h2 .n{width:28px;height:28px;border-radius:7px;background:var(--accentd);border:1px solid rgba(0,200,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0}
+.pm-h3{font-size:14px;font-weight:600;margin:18px 0 7px;color:var(--text)}
+.pm-p{color:var(--dim);margin-bottom:12px;font-size:13.5px;line-height:1.72}
+.pm-ul{list-style:none;margin:0 0 14px;padding:0}
+.pm-ul li{color:var(--dim);margin-bottom:7px;padding-left:18px;position:relative;font-size:13px;line-height:1.6}
+.pm-ul li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.pm-ol{list-style:none;counter-reset:item;margin:0 0 14px;padding:0}
+.pm-ol li{counter-increment:item;color:var(--dim);margin-bottom:7px;padding-left:22px;position:relative;font-size:13px;line-height:1.6}
+.pm-ol li::before{content:counter(item);position:absolute;left:0;top:0;font-family:var(--mono);font-size:10px;color:var(--accent);width:16px}
+.pm-callout{background:var(--panel);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:13px 16px;margin:14px 0;font-size:13px;color:var(--text);line-height:1.65}
+.pm-table-wrap{overflow-x:auto;margin:12px 0}
+.pm-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.pm-table th{background:var(--panel);padding:8px 12px;text-align:left;font-family:var(--mono);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--b2)}
+.pm-table td{padding:8px 12px;border-bottom:1px solid var(--b);color:var(--dim)}
+.pm-strong{color:var(--text);font-weight:600}
+.pm-divider{height:1px;background:var(--b);margin:32px 0}
+.pm-footer{text-align:center;font-family:var(--mono);font-size:9.5px;color:var(--muted);padding-top:8px}
+.privacy-modal-footer{padding:14px 24px;border-top:1px solid var(--b);display:flex;justify-content:center;border-radius:0 0 16px 16px;background:var(--surface)}
+@media(max-width:600px){.pm-toc ol{grid-template-columns:1fr}.privacy-modal-body{padding:20px 18px 30px}}
 
 </style>
 </head>
@@ -982,7 +1029,7 @@ async function ldpGenerate(){
   var user=null;try{user=JSON.parse(localStorage.getItem('ngl_user')||'null');}catch(e){}
   if(!user||(user&&!user.paid)){
     var docsUsed=0;try{docsUsed=parseInt(localStorage.getItem('ngl_docs_used')||'0');}catch(e){}
-    if(docsUsed>=2){
+    if(docsUsed>=1){
       showUpgradeWall();
       return;
     }
@@ -1054,10 +1101,10 @@ async function ldpGenerate(){
       var used=0;try{used=parseInt(localStorage.getItem('ngl_docs_used')||'0');}catch(e){}
       used++;
       try{localStorage.setItem('ngl_docs_used',used);}catch(e){}
-      var remaining=2-used;
+      var remaining=1-used;
       updateDocCounter(used);
       if(remaining<=0){
-        toast(docLabel+' generated ✓ — You have used all 2 free documents. Upgrade to continue.','ok');
+        toast(docLabel+' generated ✓ — You have used your free document. Upgrade to continue.','ok');
       } else {
         toast(docLabel+' generated ✓ — '+remaining+' free document'+(remaining===1?'':'s')+' remaining','ok');
       }
@@ -1252,7 +1299,7 @@ renderJurisdictions();
 // ── FREE TRIAL COUNTER & UPGRADE WALL ──────────────────────────────────────
 
 function updateDocCounter(used) {
-  var remaining = Math.max(0, 2 - used);
+  var remaining = Math.max(0, 1 - used);
   var el = document.getElementById('freeDocCounter');
   if (!el) return;
   el.style.display = 'flex';
@@ -1273,7 +1320,7 @@ function showUpgradeWall() {
   var title = document.querySelector('.paywall-title');
   if (title) title.textContent = 'Upgrade to Continue';
   var sub = document.querySelector('.paywall-sub');
-  if (sub) sub.innerHTML = 'You have used all <strong>2 free documents</strong>. Choose a plan to keep generating.<br>Early Access pricing — locks in forever for the first 100 customers.';
+  if (sub) sub.innerHTML = 'You have used your <strong>free document</strong>. Choose a plan to keep generating.<br>Early Access pricing — locks in forever for the first 100 customers.';
 }
 
 // ── AUTH FUNCTIONS ───────────────────────────────────────────────────────────
@@ -1309,15 +1356,22 @@ function authSignUp() {
   if (!name.trim())                     { authMsg('authMsgUp', 'Enter your full name', 'err'); return; }
   if (!email || !email.includes('@'))   { authMsg('authMsgUp', 'Enter a valid work email', 'err'); return; }
   if (!pass || pass.length < 8)         { authMsg('authMsgUp', 'Password must be at least 8 characters', 'err'); return; }
+  var consentBox = document.getElementById('suPrivacyAgree');
+  if (!consentBox || !consentBox.checked) {
+    authMsg('authMsgUp', 'Please agree to the Privacy Policy and Terms of Service to continue', 'err');
+    var row = document.getElementById('suConsentRow');
+    if (row) { row.classList.add('flash'); setTimeout(function(){ row.classList.remove('flash'); }, 800); }
+    return;
+  }
   var accounts = [];
   try { accounts = JSON.parse(localStorage.getItem('ngl_accounts') || '[]'); } catch(e) {}
   if (accounts.find(function(a) { return a.email.toLowerCase() === email.toLowerCase(); })) {
     authMsg('authMsgUp', 'An account with this email already exists. Sign in instead.', 'err'); return;
   }
-  var account = { name: name, org: org, email: email, pass: btoa(pass), paid: false, plan: '' };
+  var account = { name: name, org: org, email: email, pass: btoa(pass), paid: false, plan: '', privacy_agreed: true, privacy_agreed_at: new Date().toISOString() };
   accounts.push(account);
   try { localStorage.setItem('ngl_accounts', JSON.stringify(accounts)); } catch(e) {}
-  var user = { name: name, org: org, email: email, paid: false, plan: '' };
+  var user = { name: name, org: org, email: email, paid: false, plan: '', privacy_agreed: true, privacy_agreed_at: new Date().toISOString() };
   try { localStorage.setItem('ngl_user', JSON.stringify(user)); } catch(e) {}
   authMsg('authMsgUp', 'Account created! Starting your free trial ✓', 'ok');
   setTimeout(function() {
@@ -1644,6 +1698,23 @@ async function mfaVerify() {
   }, 500);
 }
 
+
+// ── PRIVACY MODAL ────────────────────────────────────────────────
+function openPrivacyModal() {
+  document.getElementById('privacyModal').classList.add('open');
+  // Scroll to top of modal body
+  var body = document.getElementById('privacyModalBody');
+  if (body) body.scrollTop = 0;
+}
+function closePrivacyModal() {
+  document.getElementById('privacyModal').classList.remove('open');
+}
+// Close on overlay click
+document.addEventListener('click', function(e) {
+  var modal = document.getElementById('privacyModal');
+  if (modal && e.target === modal) closePrivacyModal();
+});
+
 </script>
 
 
@@ -1764,9 +1835,13 @@ async function mfaVerify() {
         <input class="auth-inp" id="suOrg" placeholder="Organisation / Law Firm" autocomplete="organization"/>
         <input class="auth-inp" id="suEmail" type="email" placeholder="Work Email" autocomplete="email"/>
         <input class="auth-inp" id="suPass" type="password" placeholder="Password (min 8 characters)" autocomplete="new-password"/>
+        <div class="auth-consent" id="suConsentRow">
+          <input type="checkbox" id="suPrivacyAgree"/>
+          <label for="suPrivacyAgree">I have read and agree to the <a href="#" onclick="event.preventDefault();event.stopPropagation();openPrivacyModal()">Privacy Policy and Terms of Service</a>.</label>
+        </div>
         <button class="auth-btn" onclick="authSignUp()">Start Free Trial &#x2192;</button>
         <div class="auth-msg" id="authMsgUp"></div>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:6px">&#x2713; 2 free documents &nbsp;&#x2713; No credit card required &nbsp;&#x2713; Cancel anytime</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:6px">&#x2713; 1 free document &nbsp;&#x2713; No credit card required &nbsp;&#x2713; Cancel anytime</div>
       </div>
       <div class="auth-form hidden" id="formSignIn">
         <input class="auth-inp" id="siEmail" type="email" placeholder="Email" autocomplete="email"/>
@@ -1920,6 +1995,159 @@ async function mfaVerify() {
     <button class="mfa-btn" id="mfaVerifyBtn" onclick="mfaVerify()">Verify &#x2192;</button>
     <div class="mfa-msg" id="mfaMsg"></div>
     <div style="margin-top:12px;font-family:var(--mono);font-size:9px;color:var(--muted)">Open your authenticator app to get the code</div>
+  </div>
+</div>
+
+
+<!-- PRIVACY POLICY MODAL -->
+<div class="privacy-modal-ovl" id="privacyModal">
+  <div class="privacy-modal">
+    <div class="privacy-modal-header">
+      <div class="privacy-modal-title">⚖️ Privacy Policy &amp; Terms of Service</div>
+      <button class="privacy-modal-close" onclick="closePrivacyModal()">&#x2715;</button>
+    </div>
+    <div class="privacy-modal-body" id="privacyModalBody">
+      <div class="pm-eyebrow">Legal · Corverxis Technologies Ltd</div>
+      <div class="pm-updated">Last updated: June 18, 2026 · Effective for all NexGenLegal accounts</div>
+
+      <div class="pm-toc">
+        <div class="pm-toc-title">Contents</div>
+        <ol>
+          <li><a href="#pm1"><span class="n">1</span>Information We Collect</a></li>
+          <li><a href="#pm2"><span class="n">2</span>How We Use Your Information</a></li>
+          <li><a href="#pm3"><span class="n">3</span>AI-Generated Documents</a></li>
+          <li><a href="#pm4"><span class="n">4</span>Information Sharing</a></li>
+          <li><a href="#pm5"><span class="n">5</span>Data Security</a></li>
+          <li><a href="#pm6"><span class="n">6</span>Data Retention</a></li>
+          <li><a href="#pm7"><span class="n">7</span>Your Privacy Rights</a></li>
+          <li><a href="#pm8"><span class="n">8</span>International Transfers</a></li>
+          <li><a href="#pm9"><span class="n">9</span>Cookies &amp; Tracking</a></li>
+          <li><a href="#pm10"><span class="n">10</span>Terms of Service</a></li>
+          <li><a href="#pm11"><span class="n">11</span>Disclaimers &amp; Liability</a></li>
+          <li><a href="#pm12"><span class="n">12</span>Contact Us</a></li>
+        </ol>
+      </div>
+
+      <div class="pm-h2" id="pm1"><span class="n">1</span>Information We Collect</div>
+      <div class="pm-h3">Account Information</div>
+      <ul class="pm-ul">
+        <li>Full name, email address, organisation/firm name</li>
+        <li>Password (stored as a salted hash — never in plain text)</li>
+        <li>Billing plan, subscription status, and payment confirmation status</li>
+      </ul>
+      <div class="pm-h3">Document Content</div>
+      <ul class="pm-ul">
+        <li>Matter names, case details, party names, and contextual information you enter when generating a document</li>
+        <li>The text content of documents you generate using NexGenLegal</li>
+        <li>Documents you choose to save to your account</li>
+      </ul>
+      <div class="pm-h3">Automatically Collected Information</div>
+      <ul class="pm-ul">
+        <li>Browser type, device type, and general usage analytics</li>
+        <li>Number of documents generated and module/jurisdiction selections</li>
+        <li>IP address and approximate location for fraud prevention and currency display</li>
+      </ul>
+
+      <div class="pm-h2" id="pm2"><span class="n">2</span>How We Use Your Information</div>
+      <div class="pm-h3">Primary Purposes</div>
+      <ul class="pm-ul">
+        <li>Generating, formatting, and delivering the legal and government documents you request</li>
+        <li>Operating your account, free trial allowance, and subscription billing</li>
+        <li>Providing customer support and responding to your enquiries</li>
+      </ul>
+      <div class="pm-h3">Secondary Purposes</div>
+      <ul class="pm-ul">
+        <li>Improving NexGen Ultra's document quality and jurisdiction coverage (using de-identified, aggregated patterns only)</li>
+        <li>Platform security, fraud prevention, and abuse monitoring</li>
+        <li>Legal and regulatory compliance</li>
+      </ul>
+      <div class="pm-callout"><span class="pm-strong">We do not sell your data.</span> Corverxis Technologies does not sell, rent, or trade your personal information or document content to third parties for marketing purposes, under any circumstances.</div>
+
+      <div class="pm-h2" id="pm3"><span class="n">3</span>AI-Generated Documents</div>
+      <p class="pm-p">NexGenLegal uses a third-party large language model API to generate document drafts based on your inputs. Important points about this process:</p>
+      <ul class="pm-ul">
+        <li>Document prompts and generated content are processed through the API solely to produce your requested output</li>
+        <li>We do not use your document content to train any AI model</li>
+        <li>Generated documents are provided "as-is" and must be reviewed by a qualified legal professional before use — NexGenLegal is a drafting aid, not a substitute for legal advice</li>
+        <li>You retain ownership of the documents you generate and any content you input</li>
+      </ul>
+
+      <div class="pm-h2" id="pm4"><span class="n">4</span>Information Sharing &amp; Disclosure</div>
+      <div class="pm-table-wrap">
+        <table class="pm-table">
+          <tr><th>We share with</th><th>Purpose</th></tr>
+          <tr><td>Payment processor (Stripe)</td><td>Processing subscription payments — Stripe's own privacy policy governs card data</td></tr>
+          <tr><td>Cloud infrastructure providers</td><td>Hosting the platform and securely storing account data</td></tr>
+          <tr><td>AI model provider</td><td>Generating document content from your prompts in real time</td></tr>
+          <tr><td>Legal authorities</td><td>Only where required by valid legal process, subpoena, or court order</td></tr>
+        </table>
+      </div>
+      <p class="pm-p">We do <span class="pm-strong">not</span> share your data with advertisers, data brokers, or any party for marketing purposes.</p>
+
+      <div class="pm-h2" id="pm5"><span class="n">5</span>Data Security</div>
+      <ul class="pm-ul">
+        <li><span class="pm-strong">Encryption:</span> TLS in transit; encrypted storage at rest</li>
+        <li><span class="pm-strong">Access controls:</span> Optional two-factor authentication (TOTP) available on every account</li>
+        <li><span class="pm-strong">Password security:</span> Passwords are hashed and never stored or transmitted in plain text</li>
+        <li><span class="pm-strong">Payment security:</span> All card data is handled directly by Stripe — Corverxis never stores your full card number</li>
+        <li><span class="pm-strong">Monitoring:</span> Ongoing monitoring for unauthorised access and abuse</li>
+      </ul>
+
+      <div class="pm-h2" id="pm6"><span class="n">6</span>Data Retention</div>
+      <ul class="pm-ul">
+        <li><span class="pm-strong">Account data:</span> Retained while your account is active, and for a reasonable period after closure for legal and accounting purposes</li>
+        <li><span class="pm-strong">Saved documents:</span> Retained until you delete them or close your account</li>
+        <li><span class="pm-strong">Billing records:</span> Retained as required by applicable tax and financial regulations</li>
+        <li><span class="pm-strong">Deletion requests:</span> Honoured within 30 days, except where retention is legally required</li>
+      </ul>
+
+      <div class="pm-h2" id="pm7"><span class="n">7</span>Your Privacy Rights</div>
+      <p class="pm-p">Depending on your jurisdiction (including GDPR for EU/UK users and CCPA/CPRA for California residents), you have the right to:</p>
+      <ol class="pm-ol">
+        <li><span class="pm-strong">Access</span> — request a copy of the personal data we hold about you</li>
+        <li><span class="pm-strong">Correction</span> — request correction of inaccurate information</li>
+        <li><span class="pm-strong">Deletion</span> — request deletion of your account and associated data</li>
+        <li><span class="pm-strong">Portability</span> — request your data in a portable format</li>
+        <li><span class="pm-strong">Withdraw consent</span> — close your account and stop processing at any time</li>
+      </ol>
+      <p class="pm-p">To exercise any of these rights, contact <a href="mailto:privacy@corverxis.com" style="color:var(--accent)">privacy@corverxis.com</a>.</p>
+
+      <div class="pm-h2" id="pm8"><span class="n">8</span>International Data Transfers</div>
+      <p class="pm-p">As a global platform serving customers across 180+ jurisdictions, your information may be processed in countries outside your own, including the United States and the European Union. Where required, we rely on Standard Contractual Clauses and equivalent safeguards to protect data transferred internationally, consistent with GDPR requirements for EU/EEA users.</p>
+
+      <div class="pm-h2" id="pm9"><span class="n">9</span>Cookies &amp; Tracking</div>
+      <ul class="pm-ul">
+        <li><span class="pm-strong">Essential cookies:</span> Required for login sessions and core platform functionality</li>
+        <li><span class="pm-strong">Analytics:</span> Aggregated, anonymised usage statistics to improve the product</li>
+        <li><span class="pm-strong">No third-party ad tracking:</span> NexGenLegal does not use advertising trackers or sell browsing data</li>
+      </ul>
+
+      <div class="pm-h2" id="pm10"><span class="n">10</span>Terms of Service</div>
+      <div class="pm-h3">Eligibility</div>
+      <p class="pm-p">You must be at least 18 years old and have the authority to enter into these terms on behalf of yourself or your organisation.</p>
+      <div class="pm-h3">Account Responsibility</div>
+      <p class="pm-p">You are responsible for maintaining the confidentiality of your password and for all activity that occurs under your account.</p>
+      <div class="pm-h3">Free Trial</div>
+      <p class="pm-p">Free trial document generation is limited as displayed on the platform at time of signup. Abuse of the free trial (e.g. creating multiple accounts to bypass limits) may result in account suspension.</p>
+      <div class="pm-h3">Subscription &amp; Billing</div>
+      <p class="pm-p">Paid subscriptions renew automatically at the interval selected (monthly or annual) until cancelled. Early Access pricing is locked in for the duration of continuous subscription.</p>
+      <div class="pm-h3">Acceptable Use</div>
+      <p class="pm-p">You agree not to use NexGenLegal to generate documents for unlawful purposes, to impersonate any person or entity, or to attempt to reverse-engineer, scrape, or resell access to the platform without authorisation.</p>
+
+      <div class="pm-h2" id="pm11"><span class="n">11</span>Disclaimers &amp; Liability</div>
+      <div class="pm-callout"><span class="pm-strong">Not legal advice.</span> NexGenLegal is an AI drafting tool. Documents generated by the platform are provided for informational and drafting assistance purposes only and do not constitute legal advice. All generated documents should be reviewed by a qualified, licensed legal professional before relying on or executing them.</div>
+      <p class="pm-p">The Service is provided "as is" without warranties of any kind, express or implied. To the maximum extent permitted by law, Corverxis Technologies Ltd shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Service.</p>
+
+      <div class="pm-h2" id="pm12"><span class="n">12</span>Contact Us</div>
+      <p class="pm-p">For privacy requests, data deletion, or questions about these terms, contact:</p>
+      <p class="pm-p"><span class="pm-strong">Corverxis Technologies Ltd</span><br>Data Protection &amp; Privacy Team<br>Email: <a href="mailto:privacy@corverxis.com" style="color:var(--accent)">privacy@corverxis.com</a></p>
+
+      <div class="pm-divider"></div>
+      <div class="pm-footer">&copy; 2026 Corverxis Technologies Ltd. All rights reserved. NexGenLegal is a product of Corverxis Technologies Ltd.</div>
+    </div>
+    <div class="privacy-modal-footer">
+      <button class="auth-btn" style="max-width:260px;margin:0" onclick="closePrivacyModal()">Close &amp; Return to Sign Up &#x2192;</button>
+    </div>
   </div>
 </div>
 
