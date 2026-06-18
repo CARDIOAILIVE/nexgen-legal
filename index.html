@@ -982,7 +982,7 @@ async function ldpGenerate(){
   var user=null;try{user=JSON.parse(localStorage.getItem('ngl_user')||'null');}catch(e){}
   if(!user||(user&&!user.paid)){
     var docsUsed=0;try{docsUsed=parseInt(localStorage.getItem('ngl_docs_used')||'0');}catch(e){}
-    if(docsUsed>=5){
+    if(docsUsed>=2){
       showUpgradeWall();
       return;
     }
@@ -1054,10 +1054,10 @@ async function ldpGenerate(){
       var used=0;try{used=parseInt(localStorage.getItem('ngl_docs_used')||'0');}catch(e){}
       used++;
       try{localStorage.setItem('ngl_docs_used',used);}catch(e){}
-      var remaining=5-used;
+      var remaining=2-used;
       updateDocCounter(used);
       if(remaining<=0){
-        toast(docLabel+' generated ✓ — You have used all 5 free documents. Upgrade to continue.','ok');
+        toast(docLabel+' generated ✓ — You have used all 2 free documents. Upgrade to continue.','ok');
       } else {
         toast(docLabel+' generated ✓ — '+remaining+' free document'+(remaining===1?'':'s')+' remaining','ok');
       }
@@ -1252,7 +1252,7 @@ renderJurisdictions();
 // ── FREE TRIAL COUNTER & UPGRADE WALL ──────────────────────────────────────
 
 function updateDocCounter(used) {
-  var remaining = Math.max(0, 5 - used);
+  var remaining = Math.max(0, 2 - used);
   var el = document.getElementById('freeDocCounter');
   if (!el) return;
   el.style.display = 'flex';
@@ -1273,7 +1273,7 @@ function showUpgradeWall() {
   var title = document.querySelector('.paywall-title');
   if (title) title.textContent = 'Upgrade to Continue';
   var sub = document.querySelector('.paywall-sub');
-  if (sub) sub.innerHTML = 'You have used all <strong>5 free documents</strong>. Choose a plan to keep generating.<br>Early Access pricing — locks in forever for the first 100 customers.';
+  if (sub) sub.innerHTML = 'You have used all <strong>2 free documents</strong>. Choose a plan to keep generating.<br>Early Access pricing — locks in forever for the first 100 customers.';
 }
 
 // ── AUTH FUNCTIONS ───────────────────────────────────────────────────────────
@@ -1766,7 +1766,7 @@ async function mfaVerify() {
         <input class="auth-inp" id="suPass" type="password" placeholder="Password (min 8 characters)" autocomplete="new-password"/>
         <button class="auth-btn" onclick="authSignUp()">Start Free Trial &#x2192;</button>
         <div class="auth-msg" id="authMsgUp"></div>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:6px">&#x2713; 5 free documents &nbsp;&#x2713; No credit card required &nbsp;&#x2713; Cancel anytime</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:6px">&#x2713; 2 free documents &nbsp;&#x2713; No credit card required &nbsp;&#x2713; Cancel anytime</div>
       </div>
       <div class="auth-form hidden" id="formSignIn">
         <input class="auth-inp" id="siEmail" type="email" placeholder="Email" autocomplete="email"/>
