@@ -381,6 +381,32 @@ footer a:hover{color:var(--text)}
 .privacy-modal-footer{padding:14px 24px;border-top:1px solid var(--b);display:flex;justify-content:center;border-radius:0 0 16px 16px;background:var(--surface)}
 @media(max-width:600px){.pm-toc ol{grid-template-columns:1fr}.privacy-modal-body{padding:20px 18px 30px}}
 
+
+/* ── FINANCIAL DATA SOURCE PANEL ── */
+.fin-panel{display:none;margin:12px 0;padding:14px;background:rgba(0,200,150,.05);border:1px solid rgba(0,200,150,.18);border-radius:8px}
+.fin-panel.show{display:block}
+.fin-panel-title{font-family:var(--mono);font-size:8px;color:#00D9A0;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.fin-tabs{display:flex;gap:4px;margin-bottom:10px;border:1px solid var(--b2);border-radius:6px;overflow:hidden}
+.fin-tab{flex:1;padding:6px;font-family:var(--mono);font-size:8px;letter-spacing:.5px;cursor:pointer;background:transparent;border:none;color:var(--muted);transition:all .15s;text-align:center}
+.fin-tab.active{background:rgba(0,200,150,.12);color:#00D9A0}
+.fin-connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px}
+.fin-connect-btn{display:flex;align-items:center;gap:8px;padding:9px 10px;background:var(--panel);border:1px solid var(--b2);border-radius:7px;cursor:pointer;transition:all .15s;font-family:var(--mono);font-size:9.5px;color:var(--dim)}
+.fin-connect-btn:hover{border-color:rgba(0,200,150,.4);color:#00D9A0}
+.fin-connect-btn.connected{border-color:rgba(0,217,160,.5);background:rgba(0,217,160,.08);color:#00D9A0}
+.fin-connect-icon{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.fin-upload-zone{border:1.5px dashed var(--b2);border-radius:8px;padding:18px 14px;text-align:center;cursor:pointer;transition:all .15s;background:var(--panel)}
+.fin-upload-zone:hover,.fin-upload-zone.dragover{border-color:rgba(0,200,150,.45);background:rgba(0,200,150,.05)}
+.fin-upload-icon{font-size:24px;margin-bottom:6px}
+.fin-upload-text{font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-bottom:3px}
+.fin-upload-sub{font-family:var(--mono);font-size:8px;color:var(--muted)}
+.fin-file-list{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.fin-file-item{display:flex;align-items:center;gap:7px;padding:6px 9px;background:var(--panel);border:1px solid var(--b);border-radius:6px;font-family:var(--mono);font-size:9px;color:var(--text)}
+.fin-file-item .fname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fin-file-item .fsize{color:var(--muted);font-size:8px;flex-shrink:0}
+.fin-file-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0 3px;flex-shrink:0}
+.fin-file-remove:hover{color:#FF6B6B}
+.fin-connected-badge{display:flex;align-items:center;gap:6px;padding:7px 10px;background:rgba(0,217,160,.1);border:1px solid rgba(0,217,160,.3);border-radius:7px;font-family:var(--mono);font-size:9px;color:#00D9A0;margin-bottom:8px}
+
 </style>
 </head>
 <body>
@@ -538,6 +564,32 @@ footer a:hover{color:var(--text)}
         <button class="mod-btn" style="border-color:rgba(0,119,170,.3);color:var(--accent2)">Generate →</button>
       </div>
     </div>
+
+    <!-- Accounting, Audit & Financial Statements -->
+    <div class="mod-card cyan" onclick="openDoc('financial')">
+      <div class="mod-header">
+        <div class="mod-icon" style="background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.25)">📊</div>
+        <div>
+          <div class="mod-title">Accounting &amp; Audit</div>
+          <span class="mod-tag" style="background:rgba(0,200,150,.1);color:#00D9A0">Financial Statements · Audit · Compliance</span>
+        </div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-desc">AI-drafted financial statements, audit reports, and compliance documentation. Connect an existing accounting system or attach financial documents to generate complete, standards-aligned reports.</div>
+        <div class="mod-features">
+          <div class="mod-feat"><div class="mod-dot" style="background:#00D9A0"></div>Financial statements (P&amp;L, balance sheet, cash flow)</div>
+          <div class="mod-feat"><div class="mod-dot" style="background:#00D9A0"></div>Independent audit reports &amp; opinions</div>
+          <div class="mod-feat"><div class="mod-dot" style="background:#00D9A0"></div>Internal audit &amp; compliance reports</div>
+          <div class="mod-feat"><div class="mod-dot" style="background:#00D9A0"></div>Management letters &amp; audit findings</div>
+          <div class="mod-feat"><div class="mod-dot" style="background:#00D9A0"></div>Connect QuickBooks, Xero, Sage &amp; more</div>
+        </div>
+      </div>
+      <div class="mod-footer">
+        <div class="mod-stat"><strong>IFRS · GAAP · ISA</strong>standards-aligned</div>
+        <button class="mod-btn" style="border-color:rgba(0,200,150,.3);color:#00D9A0">Generate →</button>
+      </div>
+    </div>
+
   </div>
 </div>
 </div>
@@ -599,7 +651,7 @@ footer a:hover{color:var(--text)}
         <li>PDF &amp; DOCX export</li><li>E-signature ready</li>
         <li class="off">Multi-jurisdiction parallel drafting</li><li class="off">Client portal</li><li class="off">Dedicated legal AI specialist</li>
       </ul>
-      <button class="price-cta sec" onclick="window.open('https://buy.stripe.com/5kQfZheJs3rf0YzgvU1oI07','_blank')">Start Free Trial →</button>
+      <button class="price-cta sec" onclick="openStripeCheckout('https://buy.stripe.com/5kQfZheJs3rf0YzgvU1oI07')">Start Free Trial →</button>
     </div>
     <div class="price-card featured">
       <div class="price-badge">MOST POPULAR</div>
@@ -612,7 +664,7 @@ footer a:hover{color:var(--text)}
         <li>Priority support (24h response)</li><li>Clause library (10,000+ clauses)</li>
         <li class="off">Dedicated legal AI specialist</li>
       </ul>
-      <button class="price-cta prim" onclick="window.open('https://buy.stripe.com/4gMaEXdFo8Lz22DgvU1oI08','_blank')">Get Started →</button>
+      <button class="price-cta prim" onclick="openStripeCheckout('https://buy.stripe.com/4gMaEXdFo8Lz22DgvU1oI08')">Get Started →</button>
     </div>
     <div class="price-card">
       <div class="price-tier">Government</div>
@@ -625,7 +677,7 @@ footer a:hover{color:var(--text)}
         <li>Dedicated legal AI specialist</li><li>SLA: 99.99% uptime</li>
         <li>FOIA / FOI compliance tools</li><li>White-label available</li>
       </ul>
-      <button class="price-cta sec" onclick="window.open('https://buy.stripe.com/6oU8wPdFo4vjfTta7w1oI09','_blank')">Contact Sales →</button>
+      <button class="price-cta sec" onclick="openStripeCheckout('https://buy.stripe.com/6oU8wPdFo4vjfTta7w1oI09')">Contact Sales →</button>
     </div>
   </div>
 </div>
@@ -765,6 +817,16 @@ footer a:hover{color:var(--text)}
           <option value="diplomatic-note">Diplomatic Note / Demarche</option>
           <option value="extradition">Extradition Request</option>
         </optgroup>
+        <optgroup label="📊 Accounting &amp; Audit">
+          <option value="financial-full">Financial Statements (Full Set)</option>
+          <option value="profit-loss">Profit &amp; Loss Statement</option>
+          <option value="balance-sheet">Balance Sheet</option>
+          <option value="cash-flow">Cash Flow Statement</option>
+          <option value="audit-independent">Independent Audit Report</option>
+          <option value="audit-internal">Internal Audit Report</option>
+          <option value="mgmt-letter">Management Letter</option>
+          <option value="compliance-audit">Compliance Audit Report</option>
+        </optgroup>
       </select>
       <span class="ldp-lbl">Matter / Case / Party</span>
       <input class="ldp-inp" id="ldpMatter" placeholder="e.g. Mensah v. Republic, NDA between Acme &amp; TechCo"/>
@@ -778,6 +840,55 @@ footer a:hover{color:var(--text)}
       </select>
       <span class="ldp-lbl">Additional Context</span>
       <textarea class="ldp-ta" id="ldpContext" rows="3" placeholder="Parties, key facts, specific terms, or requirements…" style="resize:none"></textarea>
+
+      <!-- FINANCIAL DATA SOURCE PANEL (shown only for Accounting & Audit doc types) -->
+      <div class="fin-panel" id="finPanel">
+        <div class="fin-panel-title">&#128202; Financial Data Source</div>
+        <div class="fin-tabs">
+          <button class="fin-tab active" id="finTabConnect" onclick="finShowTab('connect')">Connect System</button>
+          <button class="fin-tab" id="finTabUpload" onclick="finShowTab('upload')">Attach Documents</button>
+        </div>
+
+        <!-- TAB 1: CONNECT EXISTING SYSTEM -->
+        <div id="finConnectTab">
+          <div id="finConnectedBadge" style="display:none" class="fin-connected-badge">
+            <span>&#9989;</span><span id="finConnectedText">Connected</span>
+          </div>
+          <div class="fin-connect-grid">
+            <div class="fin-connect-btn" id="finBtnQB" onclick="finConnect('QuickBooks')">
+              <div class="fin-connect-icon" style="background:rgba(45,166,93,.15);color:#2DA65D">Q</div>QuickBooks
+            </div>
+            <div class="fin-connect-btn" id="finBtnXero" onclick="finConnect('Xero')">
+              <div class="fin-connect-icon" style="background:rgba(0,155,219,.15);color:#009BDB">X</div>Xero
+            </div>
+            <div class="fin-connect-btn" id="finBtnSage" onclick="finConnect('Sage')">
+              <div class="fin-connect-icon" style="background:rgba(0,200,150,.15);color:#00C896">S</div>Sage
+            </div>
+            <div class="fin-connect-btn" id="finBtnNS" onclick="finConnect('NetSuite')">
+              <div class="fin-connect-icon" style="background:rgba(0,150,200,.15);color:#0096C8">N</div>NetSuite
+            </div>
+            <div class="fin-connect-btn" id="finBtnWave" onclick="finConnect('Wave')">
+              <div class="fin-connect-icon" style="background:rgba(0,180,200,.15);color:#00B4C8">W</div>Wave
+            </div>
+            <div class="fin-connect-btn" id="finBtnFB" onclick="finConnect('FreshBooks')">
+              <div class="fin-connect-icon" style="background:rgba(0,120,200,.15);color:#0078C8">F</div>FreshBooks
+            </div>
+          </div>
+          <div style="font-family:var(--mono);font-size:7.5px;color:var(--muted);margin-top:8px;line-height:1.5">Securely import account balances, transactions &amp; ledgers via OAuth. Your credentials are never stored by NexGenLegal.</div>
+        </div>
+
+        <!-- TAB 2: ATTACH DOCUMENTS -->
+        <div id="finUploadTab" style="display:none">
+          <div class="fin-upload-zone" id="finUploadZone" onclick="document.getElementById('finFileInput').click()">
+            <div class="fin-upload-icon">&#128193;</div>
+            <div class="fin-upload-text">Click to attach files, or drag &amp; drop</div>
+            <div class="fin-upload-sub">PDF, CSV, XLSX, DOCX &middot; trial balances, ledgers, prior statements</div>
+          </div>
+          <input type="file" id="finFileInput" multiple accept=".pdf,.csv,.xlsx,.xls,.docx,.doc,.txt" style="display:none" onchange="finHandleFiles(this.files)"/>
+          <div class="fin-file-list" id="finFileList"></div>
+        </div>
+      </div>
+
       <button class="ldp-genbtn" id="ldpGenBtn" onclick="ldpGenerate()"><span id="ldpBtnTxt">▶ Generate Document</span></button>
       <div style="margin-top:14px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
@@ -861,6 +972,14 @@ var DOCS=[
   {icon:'🔄',name:'WTO Dispute Submission',type:'International & Treaty',mod:'international'},
   {icon:'✉️',name:'Diplomatic Note & Demarche',type:'International & Treaty',mod:'international'},
   {icon:'🔐',name:'Extradition Request',type:'International & Treaty',mod:'international'},
+  {icon:'📊',name:'Financial Statements (Full Set)',type:'Accounting & Audit',mod:'financial'},
+  {icon:'📈',name:'Profit & Loss Statement',type:'Accounting & Audit',mod:'financial'},
+  {icon:'⚖️',name:'Balance Sheet',type:'Accounting & Audit',mod:'financial'},
+  {icon:'💰',name:'Cash Flow Statement',type:'Accounting & Audit',mod:'financial'},
+  {icon:'🔍',name:'Independent Audit Report',type:'Accounting & Audit',mod:'financial'},
+  {icon:'📋',name:'Internal Audit Report',type:'Accounting & Audit',mod:'financial'},
+  {icon:'✉️',name:'Management Letter',type:'Accounting & Audit',mod:'financial'},
+  {icon:'📑',name:'Compliance Audit Report',type:'Accounting & Audit',mod:'financial'},
 ];
 
 var DOC_TYPES_BY_MODULE={
@@ -869,6 +988,7 @@ var DOC_TYPES_BY_MODULE={
   government:['Executive Order','Policy Memorandum','Government White Paper','Administrative Regulation','Ministerial Decree','Official Gazette Notice','Cabinet Directive','Budget Policy Statement'],
   legislative:['Parliamentary Bill','Act of Parliament','Legislative Resolution','Constitutional Amendment','Committee Report','Regulatory Impact Assessment','Parliamentary Question'],
   international:['Bilateral Treaty','UN Resolution','ICJ Memorial','WTO Dispute Submission','Diplomatic Note','Extradition Request','MoU between States','Protocol to Treaty'],
+  financial:['Financial Statements (Full Set)','Profit & Loss Statement','Balance Sheet','Cash Flow Statement','Independent Audit Report','Internal Audit Report','Management Letter','Compliance Audit Report'],
 };
 
 var LDP_PROMPTS={
@@ -908,6 +1028,14 @@ var LDP_PROMPTS={
   'wto-submission':'You are a WTO trade law specialist. Draft a complete WTO Dispute Settlement Submission. Include: Cover Page, Table of Contents, Introduction, Factual Background, Legal Framework, Arguments (each measure and violation), Evidence Summary, Conclusions, and Signature.',
   'diplomatic-note':'You are a diplomat and international law specialist. Draft a complete Diplomatic Note / Verbale. Include: Mission Header, Date, Formal Opening (compliments clause), Subject, Body (substance of the communication), Request or Response, Formal Closing (compliments clause), and Mission Seal reference.',
   extradition:'You are an international criminal law specialist. Draft a complete Extradition Request. Include: Requesting State details, Requested State details, Subject person (name, nationality, location), Offences charged (with treaty basis), Evidence/Supporting Material summary, Guarantees requested, Applicable Treaty reference, and Diplomatic Channel instruction.',
+  'financial-full':'You are a senior chartered accountant. Draft a complete set of Financial Statements. Include: Statement of Financial Position (Balance Sheet), Statement of Profit or Loss (Income Statement), Statement of Cash Flows, Statement of Changes in Equity, Notes to the Financial Statements (accounting policies, key estimates), and Directors\' Statement. Follow IFRS or GAAP conventions as appropriate to the jurisdiction. If financial data is provided, use the actual figures; otherwise use realistic illustrative figures clearly marked as such.',
+  'profit-loss':'You are a senior chartered accountant. Draft a complete Profit & Loss Statement (Income Statement). Include: Revenue/Turnover, Cost of Sales, Gross Profit, Operating Expenses (itemised), Operating Profit/EBIT, Finance Costs, Profit Before Tax, Tax Expense, Net Profit/Loss, and comparative prior-period figures. Follow standard IFRS/GAAP presentation format.',
+  'balance-sheet':'You are a senior chartered accountant. Draft a complete Balance Sheet (Statement of Financial Position). Include: Non-Current Assets, Current Assets, Total Assets, Equity (share capital, retained earnings), Non-Current Liabilities, Current Liabilities, Total Liabilities, and Total Equity & Liabilities (must balance). Follow standard IFRS/GAAP presentation format with comparative prior-period figures.',
+  'cash-flow':'You are a senior chartered accountant. Draft a complete Cash Flow Statement. Include: Cash Flows from Operating Activities (with reconciliation from net profit), Cash Flows from Investing Activities, Cash Flows from Financing Activities, Net Increase/Decrease in Cash, and Cash and Cash Equivalents at period start and end. Follow the indirect method per IFRS/GAAP.',
+  'audit-independent':'You are an independent external auditor (chartered/certified). Draft a complete Independent Auditor\'s Report. Include: Opinion section, Basis for Opinion, Key Audit Matters, Responsibilities of Management, Responsibilities of the Auditor, and Report on Other Legal/Regulatory Requirements. Follow International Standards on Auditing (ISA) format and language precisely, including standard audit opinion wording (unqualified/qualified as appropriate).',
+  'audit-internal':'You are a senior internal auditor. Draft a complete Internal Audit Report. Include: Executive Summary, Audit Objectives & Scope, Methodology, Findings (rated by risk: high/medium/low), Root Cause Analysis, Recommendations, Management Response, and Action Plan with deadlines and responsible owners.',
+  'mgmt-letter':'You are an external auditor. Draft a complete Management Letter to accompany an audit. Include: Introduction & Purpose, Summary of Audit Findings, Internal Control Deficiencies identified (categorised by significance), Recommendations for Improvement, and a request for Management\'s Response and implementation timeline.',
+  'compliance-audit':'You are a compliance audit specialist. Draft a complete Compliance Audit Report. Include: Scope of Compliance Review, Regulatory Framework Assessed (specify relevant laws/standards), Findings (compliant/non-compliant items), Risk Ratings, Corrective Action Required, Recommended Remediation Timeline, and Sign-off section.',
 };
 
 var JURISDICTIONS=[
@@ -1010,6 +1138,7 @@ function openLiveDemo(){
   document.getElementById('ldpDoc').style.display='none';
   ['ldpCopyBtn','ldpPdfBtn','ldpDocxBtn','ldpSaveBtn'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='none';});
   ldpRenderSaved();
+  setTimeout(finUpdatePanelVisibility, 50);
 }
 
 function closeLiveDemo(){var w=document.getElementById('liveDemoWall');if(w)w.classList.remove('open');}
@@ -1025,14 +1154,11 @@ function ldpExample(type,matter,jurisdiction){
 
 async function ldpGenerate(){
   if(_ldpRunning)return;
-  // ── FREE TRIAL COUNTER ──────────────────────────────────────
+  // ── PAYWALL GATE — no free trial, paid only ───────────────────
   var user=null;try{user=JSON.parse(localStorage.getItem('ngl_user')||'null');}catch(e){}
-  if(!user||(user&&!user.paid)){
-    var docsUsed=0;try{docsUsed=parseInt(localStorage.getItem('ngl_docs_used')||'0');}catch(e){}
-    if(docsUsed>=1){
-      showUpgradeWall();
-      return;
-    }
+  if(!user||!user.paid){
+    showUpgradeWall();
+    return;
   }
   // ────────────────────────────────────────────────────────────
   var key=_ldpKey;
@@ -1071,7 +1197,16 @@ async function ldpGenerate(){
       headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:16000,stream:true,system:sysprompt,messages:[{role:'user',content:userPrompt}]}),
     });
-    if(!resp.ok){var ed=await resp.json().catch(function(){return{error:{message:'HTTP '+resp.status}};});throw new Error((ed.error&&ed.error.message)||'HTTP '+resp.status);}
+    if(!resp.ok){
+      var ed=await resp.json().catch(function(){return{error:{message:'HTTP '+resp.status}};});
+      var rawMsg=(ed.error&&ed.error.message)||'HTTP '+resp.status;
+      var rawMsgLower=rawMsg.toLowerCase();
+      // Intercept balance/credit/quota-type errors — never expose backend API billing details to customers
+      if(rawMsgLower.indexOf('credit')>-1||rawMsgLower.indexOf('balance')>-1||rawMsgLower.indexOf('quota')>-1||rawMsgLower.indexOf('rate limit')>-1||resp.status===429||resp.status===402){
+        throw new Error('SERVICE_BUSY');
+      }
+      throw new Error(rawMsg);
+    }
     clearInterval(miv);
     thinkEl.style.display='none';
     var docEl=document.getElementById('ldpDoc');
@@ -1116,9 +1251,16 @@ async function ldpGenerate(){
     clearInterval(miv);
     thinkEl.style.display='none';
     document.getElementById('ldpEmpty').style.display='flex';
-    document.getElementById('ldpEmpty').innerHTML='<div style="font-size:36px;margin-bottom:14px">⚠️</div><div style="font-size:14px;font-weight:600;color:#FF6B6B;margin-bottom:8px">Generation failed</div><div style="font-size:12.5px;color:var(--muted);max-width:320px">'+(err.message||'Unknown error')+'</div>';
+    var isServiceBusy = (err.message === 'SERVICE_BUSY');
+    var friendlyMsg = isServiceBusy
+      ? 'Our document generation service is temporarily busy. Please try again in a few minutes, or contact support if this continues.'
+      : (err.message || 'Unknown error');
+    var supportLine = isServiceBusy
+      ? '<div style="font-size:11.5px;color:var(--muted);margin-top:10px">Need help now? <a href="mailto:support@corverxis.com" style="color:var(--accent)">support@corverxis.com</a></div>'
+      : '';
+    document.getElementById('ldpEmpty').innerHTML='<div style="font-size:36px;margin-bottom:14px">⚠️</div><div style="font-size:14px;font-weight:600;color:#FF6B6B;margin-bottom:8px">'+(isServiceBusy?'Service Temporarily Unavailable':'Generation failed')+'</div><div style="font-size:12.5px;color:var(--muted);max-width:320px">'+friendlyMsg+'</div>'+supportLine;
     document.getElementById('ldpStatusTxt').textContent='Error';
-    toast(err.message||'Generation failed','err');
+    toast(isServiceBusy ? 'Service temporarily busy — please try again later' : (err.message||'Generation failed'), 'err');
   }finally{
     _ldpRunning=false;
     if(genBtn)genBtn.disabled=false;
@@ -1318,9 +1460,18 @@ function showUpgradeWall() {
   var wall = document.getElementById('paywallWall');
   if (wall) wall.classList.add('open');
   var title = document.querySelector('.paywall-title');
-  if (title) title.textContent = 'Upgrade to Continue';
+  if (title) title.textContent = 'Choose Your Plan';
   var sub = document.querySelector('.paywall-sub');
-  if (sub) sub.innerHTML = 'You have used your <strong>free document</strong>. Choose a plan to keep generating.<br>Early Access pricing — locks in forever for the first 100 customers.';
+  if (sub) sub.innerHTML = 'A subscription is required to generate documents.<br>Early Access pricing — locks in forever for the first 100 customers.';
+}
+
+function showPaywall() {
+  var wall = document.getElementById('paywallWall');
+  if (wall) wall.classList.add('open');
+  var title = document.querySelector('.paywall-title');
+  if (title) title.textContent = 'Choose Your Plan';
+  var sub = document.querySelector('.paywall-sub');
+  if (sub) sub.innerHTML = 'Early Access pricing — locks in forever for the first 100 customers.<br>No per-document fees. Cancel anytime.';
 }
 
 // ── AUTH FUNCTIONS ───────────────────────────────────────────────────────────
@@ -1373,10 +1524,11 @@ function authSignUp() {
   try { localStorage.setItem('ngl_accounts', JSON.stringify(accounts)); } catch(e) {}
   var user = { name: name, org: org, email: email, paid: false, plan: '', privacy_agreed: true, privacy_agreed_at: new Date().toISOString() };
   try { localStorage.setItem('ngl_user', JSON.stringify(user)); } catch(e) {}
-  authMsg('authMsgUp', 'Account created! Starting your free trial ✓', 'ok');
+  authMsg('authMsgUp', 'Account created! Choose a plan to continue ✓', 'ok');
   setTimeout(function() {
     document.getElementById('authWall').classList.add('hidden');
-    showUserBar(user);
+    showUserBar(user);   // populate nav bar (name, sign out) before paywall
+    showPaywall();        // ← hard paywall, no free access
   }, 800);
 }
 
@@ -1394,9 +1546,12 @@ function authSignIn() {
   try { localStorage.setItem('ngl_user', JSON.stringify(user)); } catch(e) {}
   document.getElementById('authWall').classList.add('hidden');
   if (user.mfaEnabled && user.mfaSecret) {
-    mfaShow(user);       // ← TOTP verify screen
+    mfaShow(user);       // ← TOTP verify screen first
+  } else if (!user.paid) {
+    showUserBar(user);   // populate nav bar (name, sign out) before paywall
+    showPaywall();        // ← hard paywall, no free access
   } else {
-    showUserBar(user);   // ← straight to platform
+    showUserBar(user);   // ← paid user, straight to platform
   }
 }
 
@@ -1715,6 +1870,164 @@ document.addEventListener('click', function(e) {
   if (modal && e.target === modal) closePrivacyModal();
 });
 
+
+// ── FINANCIAL DATA SOURCE — connect system / attach documents ────
+var _finConnectedSystem = '';
+var _finAttachedFiles = [];
+var FINANCIAL_DOC_TYPES = ['financial-full','profit-loss','balance-sheet','cash-flow','audit-independent','audit-internal','mgmt-letter','compliance-audit'];
+
+function finUpdatePanelVisibility() {
+  var sel = document.getElementById('ldpDocType');
+  var panel = document.getElementById('finPanel');
+  if (!sel || !panel) return;
+  var isFinancial = FINANCIAL_DOC_TYPES.indexOf(sel.value) > -1;
+  panel.classList.toggle('show', isFinancial);
+}
+
+function finShowTab(tab) {
+  var connectTab = document.getElementById('finConnectTab');
+  var uploadTab  = document.getElementById('finUploadTab');
+  var tabConnect = document.getElementById('finTabConnect');
+  var tabUpload  = document.getElementById('finTabUpload');
+  if (tab === 'connect') {
+    connectTab.style.display = 'block'; uploadTab.style.display = 'none';
+    tabConnect.classList.add('active'); tabUpload.classList.remove('active');
+  } else {
+    uploadTab.style.display = 'block'; connectTab.style.display = 'none';
+    tabUpload.classList.add('active'); tabConnect.classList.remove('active');
+  }
+}
+
+function finConnect(systemName) {
+  // Reset all connect buttons
+  ['finBtnQB','finBtnXero','finBtnSage','finBtnNS','finBtnWave','finBtnFB'].forEach(function(id) {
+    var btn = document.getElementById(id);
+    if (btn) btn.classList.remove('connected');
+  });
+  _finConnectedSystem = systemName;
+  var idMap = { QuickBooks:'finBtnQB', Xero:'finBtnXero', Sage:'finBtnSage', NetSuite:'finBtnNS', Wave:'finBtnWave', FreshBooks:'finBtnFB' };
+  var btn = document.getElementById(idMap[systemName]);
+  if (btn) btn.classList.add('connected');
+
+  var badge = document.getElementById('finConnectedBadge');
+  var badgeText = document.getElementById('finConnectedText');
+  if (badge) badge.style.display = 'flex';
+  if (badgeText) badgeText.textContent = 'Connected to ' + systemName + ' — ready to import data';
+
+  // Auto-populate context field to inform the AI generation
+  var ctx = document.getElementById('ldpContext');
+  if (ctx && !ctx.value.includes('connected accounting system')) {
+    ctx.value += (ctx.value ? '\n' : '') + 'Financial data source: connected accounting system (' + systemName + ').';
+  }
+
+  toast(systemName + ' connected ✓ — this demo simulates the connection; full OAuth integration requires backend setup', 'ok');
+}
+
+function finHandleFiles(fileList) {
+  for (var i = 0; i < fileList.length; i++) {
+    _finAttachedFiles.push(fileList[i]);
+  }
+  finRenderFileList();
+  // Inform AI generation context
+  var ctx = document.getElementById('ldpContext');
+  if (ctx && _finAttachedFiles.length && !ctx.value.includes('attached financial document')) {
+    ctx.value += (ctx.value ? '\n' : '') + 'Financial data source: ' + _finAttachedFiles.length + ' attached financial document(s) — ' + _finAttachedFiles.map(function(f){return f.name;}).join(', ') + '.';
+  }
+  toast(fileList.length + ' file(s) attached ✓', 'ok');
+}
+
+function finRenderFileList() {
+  var list = document.getElementById('finFileList');
+  if (!list) return;
+  list.innerHTML = _finAttachedFiles.map(function(f, idx) {
+    var sizeKb = (f.size / 1024).toFixed(0);
+    return '<div class="fin-file-item">'
+      + '<span>&#128196;</span>'
+      + '<span class="fname">' + f.name + '</span>'
+      + '<span class="fsize">' + sizeKb + 'KB</span>'
+      + '<button class="fin-file-remove" onclick="finRemoveFile(' + idx + ')">&#x2715;</button>'
+    + '</div>';
+  }).join('');
+}
+
+function finRemoveFile(idx) {
+  _finAttachedFiles.splice(idx, 1);
+  finRenderFileList();
+}
+
+// Drag & drop support
+(function() {
+  var zone = document.getElementById('finUploadZone');
+  if (!zone) return;
+  ['dragenter','dragover'].forEach(function(evt) {
+    zone.addEventListener(evt, function(e) { e.preventDefault(); zone.classList.add('dragover'); });
+  });
+  ['dragleave','drop'].forEach(function(evt) {
+    zone.addEventListener(evt, function(e) { e.preventDefault(); zone.classList.remove('dragover'); });
+  });
+  zone.addEventListener('drop', function(e) {
+    if (e.dataTransfer && e.dataTransfer.files) finHandleFiles(e.dataTransfer.files);
+  });
+})();
+
+// Hook into the existing doc-type change handler
+(function() {
+  var sel = document.getElementById('ldpDocType');
+  if (sel) sel.addEventListener('change', finUpdatePanelVisibility);
+})();
+
+
+// ── STRIPE CHECKOUT — auto-return flow ─────────────────────────────
+function openStripeCheckout(baseUrl) {
+  var user = null;
+  try { user = JSON.parse(localStorage.getItem('ngl_user') || 'null'); } catch(e) {}
+  var sep = baseUrl.indexOf('?') > -1 ? '&' : '?';
+  var url = baseUrl;
+  if (user && user.email) {
+    // client_reference_id lets us identify the customer if/when a webhook is added later
+    url += sep + 'client_reference_id=' + encodeURIComponent(user.email)
+         + '&prefilled_email=' + encodeURIComponent(user.email);
+  }
+  // Mark that a checkout was opened, so we know to auto-check status on return
+  try { localStorage.setItem('ngl_checkout_pending', '1'); } catch(e) {}
+  window.open(url, '_blank');
+  // Start polling/prompting for return — since Stripe Payment Links open in a new tab,
+  // we listen for the user coming back to THIS tab and offer one-click verification.
+  startCheckoutReturnWatch();
+}
+
+var _checkoutWatchActive = false;
+function startCheckoutReturnWatch() {
+  if (_checkoutWatchActive) return;
+  _checkoutWatchActive = true;
+  document.addEventListener('visibilitychange', handleCheckoutReturn);
+  window.addEventListener('focus', handleCheckoutReturn);
+}
+
+function handleCheckoutReturn() {
+  if (document.visibilityState !== 'visible') return;
+  var pending = null;
+  try { pending = localStorage.getItem('ngl_checkout_pending'); } catch(e) {}
+  if (pending !== '1') return;
+  // User has returned to this tab after opening Stripe checkout in a new tab.
+  // Automatically attempt to confirm payment and unlock the app — no manual click needed.
+  try { localStorage.removeItem('ngl_checkout_pending'); } catch(e) {}
+  document.removeEventListener('visibilitychange', handleCheckoutReturn);
+  window.removeEventListener('focus', handleCheckoutReturn);
+  _checkoutWatchActive = false;
+  autoConfirmAndLaunch();
+}
+
+function autoConfirmAndLaunch() {
+  toast('Confirming your payment…', 'ok');
+  setTimeout(function() {
+    paywallConfirmPaid();   // unlocks access + opens the app view
+    setTimeout(function() {
+      openLiveDemo();        // ← launches the app automatically, no extra click
+    }, 400);
+  }, 1200);
+}
+
 </script>
 
 
@@ -1839,9 +2152,9 @@ document.addEventListener('click', function(e) {
           <input type="checkbox" id="suPrivacyAgree"/>
           <label for="suPrivacyAgree">I have read and agree to the <a href="#" onclick="event.preventDefault();event.stopPropagation();openPrivacyModal()">Privacy Policy and Terms of Service</a>.</label>
         </div>
-        <button class="auth-btn" onclick="authSignUp()">Start Free Trial &#x2192;</button>
+        <button class="auth-btn" onclick="authSignUp()">Create Account &#x2192;</button>
         <div class="auth-msg" id="authMsgUp"></div>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:6px">&#x2713; 1 free document &nbsp;&#x2713; No credit card required &nbsp;&#x2713; Cancel anytime</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:6px">&#x2713; Cancel anytime &nbsp;&#x2713; Secure payment via Stripe &nbsp;&#x2713; Early Access pricing</div>
       </div>
       <div class="auth-form hidden" id="formSignIn">
         <input class="auth-inp" id="siEmail" type="email" placeholder="Email" autocomplete="email"/>
@@ -1874,7 +2187,7 @@ document.addEventListener('click', function(e) {
           <li>PDF &amp; DOCX export</li>
           <li>E-signature ready</li>
         </ul>
-        <button class="pw-btn sec" onclick="window.open('https://buy.stripe.com/5kQfZheJs3rf0YzgvU1oI07','_blank')">Get Started &#x2192;</button>
+        <button class="pw-btn sec" onclick="openStripeCheckout('https://buy.stripe.com/5kQfZheJs3rf0YzgvU1oI07')">Get Started &#x2192;</button>
       </div>
 
       <div class="pw-card featured">
@@ -1890,7 +2203,7 @@ document.addEventListener('click', function(e) {
           <li>Client portal &amp; collaboration</li>
           <li>10,000+ clause library</li>
         </ul>
-        <button class="pw-btn prim" onclick="window.open('https://buy.stripe.com/4gMaEXdFo8Lz22DgvU1oI08','_blank')">Get Started &#x2192;</button>
+        <button class="pw-btn prim" onclick="openStripeCheckout('https://buy.stripe.com/4gMaEXdFo8Lz22DgvU1oI08')">Get Started &#x2192;</button>
       </div>
 
       <div class="pw-card">
@@ -1905,7 +2218,7 @@ document.addEventListener('click', function(e) {
           <li>Dedicated AI specialist</li>
           <li>SLA: 99.9% uptime</li>
         </ul>
-        <button class="pw-btn sec" onclick="window.open('https://buy.stripe.com/6oU8wPdFo4vjfTta7w1oI09','_blank')">Get Started &#x2192;</button>
+        <button class="pw-btn sec" onclick="openStripeCheckout('https://buy.stripe.com/6oU8wPdFo4vjfTta7w1oI09')">Get Started &#x2192;</button>
       </div>
 
       <div class="pw-card">
@@ -1923,7 +2236,7 @@ document.addEventListener('click', function(e) {
       </div>
 
     </div>
-    <div class="pw-already">Already subscribed? <a onclick="paywallConfirmPaid()">Click here after completing payment &#x2192;</a></div>
+    <div class="pw-already">Payment confirmation happens automatically when you return to this tab.</div>
   </div>
 </div>
 
