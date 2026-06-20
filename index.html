@@ -1628,7 +1628,10 @@ function paywallConfirmPaid() {
     var u = JSON.parse(localStorage.getItem('ngl_user') || 'null');
     if (u) {
       document.getElementById('authWall').classList.add('hidden');
-      showUserBar(u);  // ← paid OR free, always goes to platform
+      showUserBar(u);
+      if (!u.paid) {
+        showPaywall();   // ← unpaid sessions are sent straight to the paywall, every load
+      }
       return;
     }
   } catch(e) {}
